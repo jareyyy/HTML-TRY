@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample song</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+    <div class="content">
+        <p id="lyrics">
+
+        </p>
+    </div>
+    <audio id="myAudio" autoplay>
+        <source src="Hulaan.mp3" type="audio/mpeg">
+      </audio>
+      <script>
+    let messages = [
+        "",
+    "Bakit ba nagpapaakit",
+    "Sa bawat likha mong tinig?",
+    "'La namang kasiguraduhan",
+    "Meron ba akong kalalagyan?",
+    "Sa magulo mong damdamin",
+    "'Di alam kung para sa 'kin",
+    "Ba ang iyong nararamdaman",
+    "Kailan mo balak na punan?",
+        "",
+    "Patlang lumalalim kada",
+    "Hakbang palapit",
+    "Sadya bang walang malinaw na sagot?",
+    "Parang palaisipan "
+];
+
+let delays = [
+    2000,
+    3000, // Delay for the first message
+    3000, // Delay for the second message
+    2500, // Delay for the third message
+    4000, // Delay for the fourth message
+    3000, // Delay for the fifth message
+    3000, // Delay for the sixth message
+    2000, // Delay for the seventh message
+    2000, // Delay for the eighth message
+    3000,
+    3000, // Delay for the ninth message
+    1500, // Delay for the tenth message
+    2500, // Delay for the eleventh message
+    3500  // Delay for the twelfth message
+];
+
+let i = 0;
+let j = 0;
+let currentMessage = "";
+let delay = 30; // Typewriter delay
+
+function displayMessage() {
+    // Check if there are more messages to display
+    if (i < messages.length) {
+        // Check if we've reached the end of the current message
+        if (j < messages[i].length) {
+            currentMessage += messages[i][j];
+            document.getElementById("lyrics").innerHTML = currentMessage;
+            j++;
+            // Call displayMessage again after the specified delay
+            setTimeout(displayMessage, delay);
+        } else {
+            // Move to the next message
+            i++;
+            j = 0;
+            currentMessage = "";
+            // Wait for the specified delay before displaying the next message
+            setTimeout(displayMessage, delays[i-1]);
+        }
+    }
+}
+
+// Start displaying the messages
+displayMessage();
+</script>
+</body>
+</html>
